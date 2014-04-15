@@ -23,7 +23,7 @@ class Pomodoro(rumps.App):
     def update_pomodoro(self):
         self.time_spent += 1
 
-    @rumps.timer(1)
+    @rumps.timer(60)
     def a(sender):
         print sender
 
