@@ -1,38 +1,35 @@
 import rumps
 
 
-class Pomodoro(rumps.App):
-    pom_interval = 20  # Work time in minutes
-    break_interval = 5  # Break time in minutes
+@rumps.timer(60)
+def pomodoro_update(sender):
+    sender.update_pomodoro()
 
-    time_spent = 0
-    working = False
 
-    def __init__(self):
-        super(Pomodoro, self).__init__("pom")
-        self.menu = [
-            'Start Work Cycle'
-            ]
-        rumps.debug_mode(True)
+@rumps.timer(1)
+def tester(sender):
+    print sender.time_spent
 
-    @rumps.clicked('Start Work Cycle')
-    def start_work(self):
-        if self.working:
-            print "There is already a work cycle going. Starting a new " + \
-                "one anyway"
-        self.working = True
 
-    def update_pomodoro(self):
-        self.time_spent += 1
+pom_interval = 20  # Work time in minutes
+break_interval = 5  # Break time in minutes
 
-    @rumps.timer(60)
-    def a(sender):
-        sender.update_pomodoro()
+time_spent = 0
+working = False
 
-    @rumps.clicked('On')
-    def button(self, sender):
-        sender.title = 'Off' if sender.title == 'On' else 'On'
-        rumps.Window("I can't think of a good example app...").run()
+
+@rumps.clicked('Start Work Cycle')
+def start_work(self):
+    if self.working:
+        print "There is already a work cycle going. Starting a new " + \
+            "one anyway"
+    self.working = True
+
+
+def update_pomodoro(self):
+    self.time_spent += 1
+
 
 if __name__ == "__main__":
-    Pomodoro().run()
+    global_namespace_timer = rumps.Timer(tester, 4)
+    rumps.App('fuuu', menu=('Start Work Cycle')).run()
