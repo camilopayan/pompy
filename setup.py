@@ -7,7 +7,7 @@ Usage:
 
 from setuptools import setup
 
-APP = ['example_menu.py']
+APP = ['pom.py']
 DATA_FILES = []
 OPTIONS = {
     'argv_emulation': True,
