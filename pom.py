@@ -1,29 +1,26 @@
 import rumps
 
 
-@rumps.timer(5)
-def pom(sender):
-    print "pom callback"
-    """
-    if app.working and app.intervals_done == app.worklength:
-        app.working = False
-        app.resting = True
-        app.intervals_done = 0
-        print "Work cycle done, beginning rest cycle"
-    elif app.resting and app.intervals_done == app.restlength:
-        app.working = False
-        app.resting = False
-        app.intervals_done = 0
-        app.pomodoros_done += 1
-        print "Rest cycle done"
-    elif app.working or app.resting:
-        app.intervals_done += 1
-        print "working = " + app.working
-        print "resting = " + app.resting
-        print "intervals_done = " + app.intervals_done
-    else:
-        print "Idling"
-    """
+"""
+if app.working and app.intervals_done == app.worklength:
+    app.working = False
+    app.resting = True
+    app.intervals_done = 0
+    print "Work cycle done, beginning rest cycle"
+elif app.resting and app.intervals_done == app.restlength:
+    app.working = False
+    app.resting = False
+    app.intervals_done = 0
+    app.pomodoros_done += 1
+    print "Rest cycle done"
+elif app.working or app.resting:
+    app.intervals_done += 1
+    print "working = " + app.working
+    print "resting = " + app.resting
+    print "intervals_done = " + app.intervals_done
+else:
+    print "Idling"
+"""
 
 
 class Pompy(rumps.App):
@@ -39,7 +36,12 @@ class Pompy(rumps.App):
 
     @rumps.clicked('Start Work Cycle')
     def start_work(self, sender):
-        app.working = True
+        self.working = True
+
+    @rumps.timer(5)
+    def pom(self, sender):
+        print "pom callback"
+        print self.worklength
 
 if __name__ == "__main__":
     rumps.debug_mode(True)
