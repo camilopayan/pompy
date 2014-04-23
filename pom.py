@@ -30,6 +30,7 @@ class Pompy(rumps.App):
             self.resting = False
             self.intervals_done = 0
             self.pomodoros_done += 1
+            self.title = "P"
             rumps.alert("Rest cycle done. You've done {} pomodoros.".format(
                 self.pomodoros_done))
         elif self.working or self.resting:
