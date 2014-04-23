@@ -10,29 +10,44 @@ class Pompy(rumps.App):
 
     def __init__(self):
         super(Pompy, self).__init__("P")
-        self.menu = ['Start Work Cycle', None]
+        self.menu = ['Start Work Cycle',
+                     None,
+                     'Change Work Length',
+                     'Change Rest Length'
+                     ]
 
     @rumps.clicked('Start Work Cycle')
     def start_work(self, sender):
         self.working = True
         self.title = "P{}".format(self.worklength)
 
-    @rumps.timer(5)
+    @rumps.timer(2)
     def pom(self, sender):
         print "pom callback"
         if self.working and self.intervals_done == self.worklength:
             self.working = False
             self.resting = True
             self.intervals_done = 0
-            rumps.alert("Work cycle done, beginning rest cycle")
+            rumps.notification(
+                "Pompy",
+                "Work Cycle Done"
+                "{} minutes have passed, beginning rest cycle".format(
+                    self.worklength
+                    )
+                )
         elif self.resting and self.intervals_done == self.restlength:
             self.working = False
             self.resting = False
             self.intervals_done = 0
             self.pomodoros_done += 1
             self.title = "P"
-            rumps.alert("Rest cycle done. You've done {} pomodoros.".format(
-                self.pomodoros_done))
+            rumps.notification(
+                "Pompy",
+                "Rest Cycle Done",
+                "Congratulations! You've done {} pomodoros.".format(
+                    self.pomodoros_done
+                    )
+                )
         elif self.working or self.resting:
             self.intervals_done += 1
             if self.working:
@@ -44,8 +59,6 @@ class Pompy(rumps.App):
             print "working = {}".format(self.working)
             print "resting = {}".format(self.resting)
             print "intervals_done = {}".format(self.intervals_done)
-        else:
-            print "Idling"
 
 if __name__ == "__main__":
     rumps.debug_mode(True)
