@@ -30,7 +30,7 @@ class Pompy(rumps.App):
             self.intervals_done = 0
             rumps.notification(
                 "Pompy",
-                "Work Cycle Done"
+                "Work Cycle Done",
                 "{} minutes have passed, beginning rest cycle".format(
                     self.worklength
                     )
