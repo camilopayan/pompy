@@ -16,20 +16,21 @@ class Pompy(rumps.App):
     def start_work(self, sender):
         self.working = True
 
-    @rumps.timer(5)
+    @rumps.timer(2)
     def pom(self, sender):
         print "pom callback"
         if self.working and self.intervals_done == self.worklength:
             self.working = False
             self.resting = True
             self.intervals_done = 0
-            print "Work cycle done, beginning rest cycle"
+            rumps.alert("Work cycle done, beginning rest cycle")
         elif self.resting and self.intervals_done == self.restlength:
             self.working = False
             self.resting = False
             self.intervals_done = 0
             self.pomodoros_done += 1
-            print "Rest cycle done"
+            rumps.alert("Rest cycle done. You've done {} pomodoros.".format(
+                self.pomodoros_done))
         elif self.working or self.resting:
             self.intervals_done += 1
             print "working = {}".format(self.working)
