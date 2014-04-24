@@ -21,6 +21,14 @@ class Pompy(rumps.App):
         self.working = True
         self.title = "P{}".format(self.worklength)
 
+    @rumps.clicked('Change Work Length')
+    def change_work_length(self, sender):
+        print "todo"
+
+    @rumps.clicked('Change Rest Length')
+    def change_rest_length(self, sender):
+        print "todo"
+
     @rumps.timer(2)
     def pom(self, sender):
         print "pom callback"
