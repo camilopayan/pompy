@@ -19,7 +19,14 @@ class Pompy(rumps.App):
     @rumps.clicked('Start Work Cycle')
     def start_work(self, sender):
         self.working = True
-        self.title = "P{}".format(self.worklength)
+        self.resting = False
+        self.intervals_done = 0
+        self.title = "P{}m".format(self.worklength)
+        ts = rumps.timers()
+        for t in ts:
+            print t
+            t.stop()
+            t.start()
 
     @rumps.clicked('Change Work Length')
     def change_work_length(self, sender):
