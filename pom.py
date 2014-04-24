@@ -23,8 +23,8 @@ class Pompy(rumps.App):
 
     @rumps.clicked('Change Work Length')
     def change_work_length(self, sender):
-        window = rumps.Window("Work Length is currently {} " +
-                              "minutes".format(self.worklength),
+        window = rumps.Window("Work Length is currently " +
+                              "{} minutes".format(self.worklength),
                               title="Pompy")
         response = window.run()
         if response.clicked and int(response.text):
@@ -32,7 +32,12 @@ class Pompy(rumps.App):
 
     @rumps.clicked('Change Rest Length')
     def change_rest_length(self, sender):
-        print "todo"
+        window = rumps.Window("Rest Length is currently " +
+                              "{} minutes".format(self.restlength),
+                              title="Pompy")
+        response = window.run()
+        if response.clicked and int(response.text):
+            self.restlength = int(response.text)
 
     @rumps.timer(2)
     def pom(self, sender):
