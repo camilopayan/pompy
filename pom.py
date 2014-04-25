@@ -9,11 +9,13 @@ class Pompy(rumps.App):
     pomodoros_done = 0
 
     def __init__(self):
-        super(Pompy, self).__init__("P")
+        super(Pompy, self).__init__("Pompy", icon='tomato.png')
         self.menu = ['Start Work Cycle',
                      None,
                      'Change Work Length',
-                     'Change Rest Length'
+                     'Change Rest Length',
+                     None,
+                     'About Pompy'
                      ]
 
     @rumps.clicked('Start Work Cycle')
