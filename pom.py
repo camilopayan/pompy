@@ -18,12 +18,20 @@ class Pompy(rumps.App):
                      'About Pompy'
                      ]
 
+    @rumps.clicked('About Pompy')
+    def about(self, sender):
+        rumps.alert('About Pompy',
+                    'Pompy was made in 2014 by Camilo Payan.'
+                    ' Pompy\'s icon is from <a href="icons8.com">' +
+                    'icons8</a>',
+                    ok='Thanks!')
+
     @rumps.clicked('Start Work Cycle')
     def start_work(self, sender):
         self.working = True
         self.resting = False
         self.intervals_done = 0
-        self.title = "P{}m".format(self.worklength)
+        self.title = "{}m".format(self.worklength)
         ts = rumps.timers()
         for t in ts:
             print t
@@ -67,7 +75,7 @@ class Pompy(rumps.App):
             self.resting = False
             self.intervals_done = 0
             self.pomodoros_done += 1
-            self.title = "P"
+            self.title = ""
             rumps.notification(
                 "Pompy",
                 "Rest Cycle Done",
@@ -78,11 +86,11 @@ class Pompy(rumps.App):
         elif self.working or self.resting:
             self.intervals_done += 1
             if self.working:
-                self.title = "P{}".format(self.worklength -
-                                          self.intervals_done)
+                self.title = "{}".format(self.worklength -
+                                         self.intervals_done)
             elif self.resting:
-                self.title = "P{}".format(self.restlength -
-                                          self.intervals_done)
+                self.title = "{}".format(self.restlength -
+                                         self.intervals_done)
             print "working = {}".format(self.working)
             print "resting = {}".format(self.resting)
             print "intervals_done = {}".format(self.intervals_done)
