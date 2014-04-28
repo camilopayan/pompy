@@ -2,8 +2,8 @@ import rumps
 
 
 class Pompy(rumps.App):
-    worklength = 4
-    restlength = 2
+    worklength = 25
+    restlength = 5
     working = resting = False
     intervals_done = 0
     pomodoros_done = 0
@@ -61,7 +61,7 @@ class Pompy(rumps.App):
         if response.clicked and int(response.text):
             self.restlength = int(response.text)
 
-    @rumps.timer(2)
+    @rumps.timer(60)
     def pom(self, sender):
         print "pom callback"
         if self.working and self.intervals_done == self.worklength:
