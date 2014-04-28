@@ -35,7 +35,7 @@ class Pompy(rumps.App):
         self.title = "{}m".format(self.worklength)
         ts = rumps.timers()
         for t in ts:
-            print t
+            """print t"""
             t.stop()
             t.start()
 
@@ -63,7 +63,7 @@ class Pompy(rumps.App):
 
     @rumps.timer(60)
     def pom(self, sender):
-        print "pom callback"
+        """print 'pom callback'"""
         if self.working and self.intervals_done == self.worklength:
             self.working = False
             self.resting = True
@@ -96,11 +96,15 @@ class Pompy(rumps.App):
             elif self.resting:
                 self.title = "{}".format(self.restlength -
                                          self.intervals_done)
+            """
             print "working = {}".format(self.working)
             print "resting = {}".format(self.resting)
             print "intervals_done = {}".format(self.intervals_done)
+            """
 
 if __name__ == "__main__":
+    """
     rumps.debug_mode(True)
+    """
     app = Pompy()
     app.run()
