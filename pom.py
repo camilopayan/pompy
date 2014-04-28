@@ -21,9 +21,10 @@ class Pompy(rumps.App):
     @rumps.clicked('About Pompy')
     def about(self, sender):
         rumps.alert('About Pompy',
-                    'Pompy was made in 2014 by Camilo Payan.'
-                    ' Pompy\'s icon is from <a href="icons8.com">' +
-                    'icons8</a>',
+                    'Pompy was made in 2014 by Camilo Payan.\n' +
+                    'The code is available at ' +
+                    'http://github.com/camilopayan/pompy/\n' +
+                    'Pompy\'s icon is from http://icons8.com\n',
                     ok='Thanks!')
 
     @rumps.clicked('Start Work Cycle')
@@ -42,7 +43,9 @@ class Pompy(rumps.App):
     def change_work_length(self, sender):
         window = rumps.Window("Work Length is currently " +
                               "{} minutes".format(self.worklength),
-                              title="Pompy")
+                              title="Pompy",
+                              dimensions=(300, 100)
+                              )
         response = window.run()
         if response.clicked and int(response.text):
             self.worklength = int(response.text)
@@ -51,7 +54,9 @@ class Pompy(rumps.App):
     def change_rest_length(self, sender):
         window = rumps.Window("Rest Length is currently " +
                               "{} minutes".format(self.restlength),
-                              title="Pompy")
+                              title="Pompy",
+                              dimensions=(300, 100)
+                              )
         response = window.run()
         if response.clicked and int(response.text):
             self.restlength = int(response.text)
